@@ -26,7 +26,7 @@ const listTasks = async(req, res) => {
 //PATCH request to set task done/undone
 const completeTask = async(req, res) => {
     try{
-        const validate = await completeTaskReq.validateAsync(req.params);
+        const validate = await completeTaskReq.validateAsync(req.query);
         const [data, newValue] = await Task.update(
             { complete: sequelize.literal('not tasks.complete') },
             { where: { id: validate.id },

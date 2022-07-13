@@ -16,7 +16,10 @@ export const getAllTasks = async (user_id) => {
 
 export const completeTask = async (task_id) => {
     try {
-        const response = await api.patch(`tasks/${task_id}`, {params: {id: task_id}});
+        const response = await api.patch(
+            `tasks/${task_id}`,
+            {params: {id: task_id}}
+        );
         return response.data;
     }
     catch (error) {

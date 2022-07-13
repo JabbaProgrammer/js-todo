@@ -1,0 +1,3 @@
+//Postman analog
+
+GET http://localhost:7777/tasks/all

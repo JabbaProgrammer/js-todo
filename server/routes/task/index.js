@@ -1,4 +1,6 @@
-const { listTasks, createTask, completeTask} = require("../../controllers/task.controller");
+const listTasks = require("../../controllers/task/listTasks");
+const createTask = require("../../controllers/task/createTask");
+const completeTask = require("../../controllers/task/completeTask");
 const AuthMiddleware = require("../../middleware/auth.middleware");
 
 const router = require("express").Router();

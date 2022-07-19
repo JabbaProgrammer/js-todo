@@ -26,6 +26,7 @@ export const login = createAsyncThunk(
     '/login',
     async (payload, { rejectWithValue }) => {
         try {
+            console.log(payload)
             const response = await AuthService.login(payload.email, payload.password);
             return response;
         }
@@ -54,26 +55,26 @@ export const userSlice = createSlice({
             
         },
         [registration.fulfilled]: (state, action) => {
-            localStorage.setItem('token', action.payload.tokens.accessToken);
-            state.email = action.payload.user.email;
-            state.id = action.payload.user.id;
+            localStorage.setItem('token', action.payload.tokens.data.data.accessToken);
             myNotification(`Registration complete`)
         },
         [registration.rejected]: (state, action) => {
-            myNotification(`${action.payload.response.data || 'Network error'}`)
+            myNotification(`${action.payload.response.data.data || 'Network error'}`)
         },
         ///////////////////////////////////////////////
         [login.pending]: (state) => {
         },
         [login.fulfilled]: (state, action) => {
-            localStorage.setItem('token', action.payload.tokens.accessToken);
+            console.log(action.payload)
+            localStorage.setItem('token', action.payload.data.tokens.accessToken);
             state.logged = true;
-            state.email = action.payload.user.email;
-            state.id = action.payload.user.id;
+            state.email = action.payload.data.user.email;
+            state.id = action.payload.data.user.id;
             myNotification(`You logged in as ${state.email}`)
         },
         [login.rejected]: (state, action) => {
-            myNotification(`${action.payload.response.data || 'Network error'}`)
+            console.log(action.payload.response.data)
+            myNotification(`${action.payload.response.data.data || 'Network error'}`)
         },
     }
 })

@@ -4,6 +4,8 @@ const reqQueryValidator = (schema) => (req, _res, next) => {
     value: validValue,
   } = schema.validate(req.query);
 
+  console.log(1)
+
   if (validationError) {
     next(new Error(`Invalid request query: ${getMessage(validationError)}`));
     return;
@@ -18,6 +20,9 @@ const reqBodyValidator = (schema) => (req, _res, next) => {
     error: validationError,
     value: validValue,
   } = schema.validate(req.body);
+
+  
+  console.log(1)
 
   if (validationError) {
     next(new Error(`Invalid request body: ${getMessage(validationError)}`));

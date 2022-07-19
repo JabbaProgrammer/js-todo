@@ -1,10 +1,10 @@
 const validate = require('./validate');
 
-const composeWrappers = (...wrappers) => {
-    return (handler) => {
-        return wrappers.reduceRight((result, wrapper) => wrapper(result), handler);
-    };
-};
+// const composeWrappers = (...wrappers) => {
+//     return (handler) => {
+//         return wrappers.reduceRight((result, wrapper) => wrapper(result), handler);
+//     };
+// };
 
 // export interface BuildWrapperOptions {
 //   catch?: boolean;
@@ -23,7 +23,7 @@ const wrap = (handler, options) => {
 };
 
 module.exports = {
-    composeWrappers,
+    // composeWrappers,
     wrap,
     validate
 }

@@ -12,13 +12,12 @@ const completeTaskSchema = joi.object({
 
 const completeTask = async(req, res) => {
     try{
-        const validate = await completeTaskReq.validateAsync(req.query);
         const [data, newValue] = await Task.update(
             { complete: db.sequelize.literal('not tasks.complete') },
-            { where: { id: validate.id },
+            { where: { id: req.query.id },
             returning: true
         })
-        res.send({id: validate.id, complete: newValue[0].dataValues.complete});
+        res.send({id: req.query.id, complete: newValue[0].dataValues.complete});
     }
     catch(error){
         res.status(400).send(error.message);

@@ -2,10 +2,8 @@ const { Task } = require("../../models");
 
 const listTasks = async(req, res) => {
     try{
-        const validate = await listTasksReq.validateAsync(req.query)
-        console.log(validate.user_id)
         const data = await Task.findAll({
-            where:{user_id: validate.user_id},
+            where:{user_id: req.query.user_id},
             attributes:['name', 'description', 'complete', 'id']
         });
         res.send(data);
